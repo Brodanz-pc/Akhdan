@@ -1,0 +1,222 @@
+/* Profile Card Styles */
+.profile-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgb(163, 163, 163) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+    z-index: 0;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.profile-card {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin: 0 auto;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.profile-card:hover {
+    width: 600px;
+    transition-delay: 0.5s;
+}
+
+.profile-card .circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+}
+
+.profile-card .circle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    border: 8px solid var(--clr);
+    background: #242323;
+    transition: 0.5s, background 0.5s;
+    transition-delay: 0.75s, 1s;
+    filter: drop-shadow(0 0 10px var(--clr)) drop-shadow(0 0 60px var(--clr));
+}
+
+.profile-card:hover .circle::before {
+    width: 100%;
+    transition-delay: 0.5s;
+    height: 100%;
+    border-radius: 20px;
+    background: var(--clr);
+}
+
+.profile-card .circle .logo {
+    position: relative;
+    width: 250px;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+}
+
+.profile-card:hover .circle .logo {
+    transform: scale(0);
+    transition-delay: 0s;
+}
+
+.profile-card .profile-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0) rotate(315deg);
+    height: 300px;
+    transition: 0.5s ease-in-out;
+    z-index: 10;
+}
+
+.profile-card:hover .profile-img {
+    transition-delay: 0.75s;
+    transform: translate(-50%, -50%) scale(1) rotate(15deg);
+    top: 45%;
+    left: 75%;
+    height: 500px;
+}
+
+.profile-card .content {
+    position: absolute;
+    width: 50%;
+    left: 20%;
+    padding: 20px 20px 20px 40px;
+    opacity: 0;
+    transition: 0.5s;
+    visibility: hidden;
+}
+
+.profile-card:hover .content {
+    transition-delay: 0.75s;
+    opacity: 1;
+    visibility: visible;
+    left: 0;
+}
+
+.profile-card .content h2 {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 2.4em;
+    line-height: 1em;
+    margin-bottom: 10px;
+}
+
+.profile-card .content p {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .profile-card {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .profile-card:hover {
+        width: 500px;
+    }
+    
+    .profile-card .circle .logo {
+        width: 200px;
+    }
+    
+    .profile-card:hover .profile-img {
+        height: 400px;
+    }
+    
+    .profile-card .content h2 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-section {
+        padding: 60px 0;
+    }
+    
+    .profile-card {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .profile-card:hover {
+        width: 100%;
+        height: 400px;
+        flex-direction: column;
+    }
+    
+    .profile-card .circle::before {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .profile-card:hover .profile-img {
+        top: 30%;
+        left: 50%;
+        height: 250px;
+    }
+    
+    .profile-card .content {
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .profile-card:hover .content {
+        top: 60%;
+        left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-card {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .profile-card:hover {
+        height: 350px;
+    }
+    
+    .profile-card:hover .profile-img {
+        height: 200px;
+    }
+    
+    .profile-card .content h2 {
+        font-size: 1.5em;
+    }
+}
