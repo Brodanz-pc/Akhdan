@@ -1,102 +1,102 @@
 // Data galeri
 const galleryData = [
     {
-        src: "Memory/cool1.jpg",
+        src: "cool1.jpg",
         category: "cool",
         caption: "Gunung Merapi"
     },
     {
-        src: "Memory/freak1.jpg",
+        src: "freak1.jpg",
         category: "freak",
         caption: "before reading the book"
     },
     {
-        src: "Memory/cool2.jpg",
+        src: "cool2.jpg",
         category: "cool",
         caption: "Pulang Kampung"
     },
     {
-        src: "Memory/cool3.jpg",
+        src: "cool3.jpg",
         category: "cool",
         caption: "modal lightroom"
     },
     {
-        src: "Memory/cool4.jpg",
+        src: "cool4.jpg",
         category: "cool",
         caption: "Danz The Explorer"
     },
     {
-        src: "Memory/cool5.jpg",
+        src: "cool5.jpg",
         category: "cool",
         caption: "Danz The Explorer part 2"
     },
     {
-        src: "Memory/cool6.jpg",
+        src: "cool6.jpg",
         category: "cool",
         caption: "bukit merapi"
     },
     {
-        src: "Memory/freak2.jpg",
+        src: "freak2.jpg",
         category: "freak",
         caption: "yang bener..."
     },
     {
-        src: "Memory/freak3.jpg",
+        src: "freak3.jpg",
         category: "freak",
         caption: "first time eating gacoan noodles"
     },
     {
-        src: "Memory/memories1.jpg",
+        src: "memories1.jpg",
         category: "memories",
         caption: "penampakan 2 anomali"
     },
     {
-        src: "Memory/memories2.jpg",
+        src: "memories2.jpg",
         category: "memories",
         caption: "juara 1 lomba fashion show"
     },
     {
-        src: "Memory/cool7.jpg",
+        src: "cool7.jpg",
         category: "cool",
         caption: "mabar di rumah icat"
     },
     {
-        src: "Memory/cool8.jpg",
+        src: "cool8.jpg",
         category: "cool",
         caption: "sunset with gacoan"
     },
      {
-        src: "Memory/memories3.JPG",
+        src: "memories3.JPG",
         category: "memories",
         caption: "Duo maut"
     },
      {
-        src: "Memory/memories4.jpg",
+        src: "memories4.jpg",
         category: "memories",
         caption: "..."
     },
     {
-        src: "Memory/memories5.jpg",
+        src: "memories5.jpg",
         category: "memories",
         caption: "Tim jurnalistik & peserta lomba"
     },
     {
-        src: "Memory/memories6.jpg",
+        src: "memories6.jpg",
         category: "memories",
         caption: "Muhadhoroh Akbar"
     },
     {
-        src: "Memory/memories7.jpg",
+        src: "memories7.jpg",
         category: "memories",
         caption: "setelah rapat paripurna organisasi"
     },
     {
-        src: "Memory/memories8.jpg",
+        src: "memories8.jpg",
         category: "nature",
         caption: "Backpacker to monas"
     },
     {
-        src: "Memory/memories5.jp",
+        src: "memories5.jp",
         category: "nature",
         caption: "Pemandangan gunung yang indah"
     },
@@ -162,4 +162,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load galeri pertama kali
     loadGallery();
+
 });
