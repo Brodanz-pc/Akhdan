@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brodanz Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
-    <link rel="icon" type="image/x-icon" href="c:\Users\User\Downloads\download (7).png">
     <style>
-        /* Variabel CSS */
+        /* Variabel CSS yang diperbarui */
         :root {
-            --primary-color: #000000;
-            --secondary-color: #f39c12;
-            --text-color: #ffffff;
-            --bg-color: #010101;
-            --card-bg: #616161;
-            --timeline-bg: #212632;
+            --primary-color: #1a1a2e;
+            --secondary-color: #4cc9f0;
+            --accent-color: #f72585;
+            --text-color: #e6e6e6;
+            --bg-color: #16213e;
+            --card-bg: #2d4263;
+            --timeline-bg: #0f3460;
             --section-padding: 80px;
-            --gradient-blue: #6e8efb;
-            --gradient-purple: #a777e3;
-            --quote-color: #3498db;
-            --poem-color: #e74c3c;
+            --gradient-blue: #4361ee;
+            --gradient-purple: #7209b7;
+            --quote-color: #4cc9f0;
+            --poem-color: #f72585;
         }
 
         /* Reset dan Base Styles */
@@ -32,11 +32,12 @@
         }
 
         body {
-            background: var(--bg-color);
+            background: linear-gradient(135deg, var(--bg-color) 0%, var(--primary-color) 100%);
             color: var(--text-color);
             overflow-x: hidden;
             line-height: 1.6;
-            padding-top: 70px; /* Space for fixed navbar */
+            padding-top: 70px;
+            min-height: 100vh;
         }
 
         /* Navbar Styles */
@@ -48,17 +49,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(26, 26, 46, 0.95);
             padding: 15px 5%;
             color: white;
             z-index: 1000;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .navbar.scrolled {
             padding: 10px 5%;
-            background-color: rgba(0, 0, 0, 0.95);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            background-color: rgba(26, 26, 46, 0.98);
         }
 
         .navbar .logo {
@@ -67,10 +69,11 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--secondary-color);
         }
 
         .navbar .logo i {
-            color: var(--secondary-color);
+            color: var(--accent-color);
         }
 
         .nav-links {
@@ -84,10 +87,26 @@
             text-decoration: none;
             transition: color 0.3s;
             font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
         }
 
         .nav-links li a:hover {
             color: var(--secondary-color);
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
         }
 
         /* Social Icons Styles */
@@ -116,16 +135,19 @@
         }
 
         /* Platform-specific colors */
-        .social-icons .youtube {
-            color: #FF0000;
+        .social-icons .youtube:hover {
+            background-color: #FF0000;
+            color: white;
         }
 
-        .social-icons .instagram {
-            color: #E4405F;
+        .social-icons .instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
         }
 
-        .social-icons .tiktok {
-            color: #69C9D0;
+        .social-icons .tiktok:hover {
+            background-color: #69C9D0;
+            color: black;
         }
 
         /* Hamburger Menu */
@@ -147,7 +169,7 @@
         /* Profile Card Styles */
         .profile-section {
             padding: 100px 0;
-            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--timeline-bg) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -159,7 +181,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgb(163, 163, 163) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(76, 201, 240, 0.1) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
             z-index: 0;
         }
@@ -210,11 +232,11 @@
             width: 350px;
             height: 350px;
             border-radius: 50%;
-            border: 8px solid var(--clr);
-            background: #242323;
+            border: 8px solid var(--secondary-color);
+            background: var(--card-bg);
             transition: 0.5s, background 0.5s;
             transition-delay: 0.75s, 1s;
-            filter: drop-shadow(0 0 10px var(--clr)) drop-shadow(0 0 60px var(--clr));
+            filter: drop-shadow(0 0 10px var(--secondary-color)) drop-shadow(0 0 60px var(--secondary-color));
         }
 
         .profile-card:hover .circle::before {
@@ -222,7 +244,7 @@
             transition-delay: 0.5s;
             height: 100%;
             border-radius: 20px;
-            background: var(--clr);
+            background: var(--secondary-color);
         }
 
         .profile-card .circle .logo {
@@ -245,6 +267,8 @@
             height: 300px;
             transition: 0.5s ease-in-out;
             z-index: 10;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
         .profile-card:hover .profile-img {
@@ -278,11 +302,13 @@
             font-size: 2.4em;
             line-height: 1em;
             margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .profile-card .content p {
             color: #ffffff;
             margin-bottom: 20px;
+            font-size: 1.1rem;
         }
 
         /* Header Styles */
@@ -291,11 +317,13 @@
             padding: 3rem 0;
             background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-purple));
             margin-bottom: 2rem;
+            border-bottom: 5px solid var(--accent-color);
         }
 
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         header p {
@@ -327,7 +355,8 @@
         .filter-btn.active,
         .filter-btn:hover {
             background: var(--secondary-color);
-            color: var(--bg-color);
+            color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(76, 201, 240, 0.5);
         }
 
         /* Gallery Grid */
@@ -350,10 +379,13 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
             aspect-ratio: 1/1;
+            border: 2px solid transparent;
         }
 
         .gallery-item:hover {
             transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(247, 37, 133, 0.3);
         }
 
         .gallery-img {
@@ -389,6 +421,7 @@
             max-height: 80vh;
             margin: 50px auto 0;
             border-radius: 8px;
+            box-shadow: 0 0 30px rgba(76, 201, 240, 0.5);
         }
 
         .close {
@@ -403,7 +436,7 @@
         }
 
         .close:hover {
-            color: var(--secondary-color);
+            color: var(--accent-color);
         }
 
         .caption {
@@ -425,19 +458,19 @@
             text-align: center;
             margin-bottom: 30px;
             padding: 20px 0;
-            background-color: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(135deg, var(--gradient-blue), var(--gradient-purple));
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .container header h1 {
-            color: var(--secondary-color);
+            color: white;
             margin-bottom: 10px;
             font-size: 2.2rem;
         }
 
         .container header p {
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.1rem;
         }
 
@@ -464,7 +497,7 @@
 
         .tab-btn.active {
             color: var(--text-color);
-            border-bottom: 3px solid var(--secondary-color);
+            border-bottom: 3px solid var(--accent-color);
             background: rgba(255, 255, 255, 0.05);
         }
 
@@ -481,7 +514,7 @@
         }
 
         .card {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: var(--card-bg);
             border-radius: 8px;
             padding: 25px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -725,6 +758,7 @@
             filter: brightness(1.2);
             transform: translateY(-10px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--accent-color);
         }
 
         /* Section Styles */
@@ -762,19 +796,22 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            box-shadow: 0 5px 15px rgba(76, 201, 240, 0.4);
         }
 
         .btn:hover {
-            background: #e67e22;
+            background: var(--accent-color);
+            color: white;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(247, 37, 133, 0.4);
         }
 
         /* Footer Styles */
         .footer {
-            background: #111;
+            background: var(--primary-color);
             padding: 40px 0 20px;
             text-align: center;
+            border-top: 1px solid rgba(76, 201, 240, 0.3);
         }
 
         .footer-content {
@@ -793,10 +830,11 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--secondary-color);
         }
 
         .footer-logo i {
-            color: var(--secondary-color);
+            color: var(--accent-color);
         }
 
         .footer-links {
@@ -835,14 +873,14 @@
         .footer-bottom {
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #333;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #777;
             font-size: 0.9rem;
         }
 
         /* Horizontal Timeline Styles */
         .experience-section {
-            background: linear-gradient(45deg, var(--timeline-bg), #242A34, #3C4C5A);
+            background: linear-gradient(45deg, var(--timeline-bg), #1a1a2e, #16213e);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             padding: 100px 0;
@@ -891,10 +929,13 @@
             z-index: 1;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
+            border: 1px solid rgba(76, 201, 240, 0.3);
         }
 
         .timeline-item:hover {
             transform: translateY(-10px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
         .timeline-date {
@@ -905,8 +946,8 @@
 
         .timeline-item i {
             align-self: center;
-            background-color: #444B57;
-            color: #16222D;
+            background-color: var(--card-bg);
+            color: var(--secondary-color);
             font-size: 1.5rem;
             width: 50px;
             height: 50px;
@@ -1057,12 +1098,13 @@
                 right: -100%;
                 width: 70%;
                 height: 100vh;
-                background-color: rgba(0, 0, 0, 0.95);
+                background-color: rgba(26, 26, 46, 0.98);
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 gap: 30px;
                 transition: right 0.3s ease;
+                backdrop-filter: blur(10px);
             }
             
             .nav-links.active {
@@ -1211,7 +1253,7 @@
             }
             
             .tab-btn.active {
-                border-left: 3px solid var(--secondary-color);
+                border-left: 3px solid var(--accent-color);
                 border-bottom: none;
             }
             
@@ -1302,7 +1344,7 @@
                     <img src="c:\Users\User\Downloads\thumb-1920-1217518.jpg" alt="Roblox Thumbnail">
                 </div>
                 <div class="item">
-                    <img src="windah.jpg" alt="Windah Basudara Thumbnail">
+                    <img src="c:\Users\User\Downloads\windah.jpg" alt="Windah Basudara Thumbnail">
                 </div>
                 <div class="item">
                     <img src="c:\Users\User\Downloads\tere.jpeg" alt="Tere Liye Thumbnail">
@@ -1311,7 +1353,7 @@
                     <img src="c:\Users\User\Downloads\R1363_MrBeast_1feature.webp" alt="James Stephen Thumbnail">
                 </div>
                 <div class="item">
-                    <img src="hansen.jpg" alt="Hansen Vendi Agus Thumbnail">
+                    <img src="c:\Users\User\Downloads\01hcy84hbxzb4b2sbv4y5gec2z.webp" alt="Hansen Vendi Agus Thumbnail">
                 </div>
             </div>
         </div>
@@ -1817,7 +1859,7 @@
             const navLinks = document.querySelector('.nav-links');
 
             // Navbar Scroll Effect
-            window.addEventListener('scroll', () => {
+            window.addEventListener('scroll', () {
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
@@ -1840,7 +1882,7 @@
 
             // Close menu when clicking on a link
             document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
+                link.addEventListener('click', () {
                     hamburger.classList.remove('active');
                     navLinks.classList.remove('active');
                     document.body.style.overflow = 'auto';
@@ -1973,5 +2015,3 @@
     </script>
 </body>
 </html>
-
-
