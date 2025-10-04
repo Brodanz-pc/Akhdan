@@ -1317,58 +1317,65 @@
     </nav>
 
     <!-- Beranda Section -->
-    <section id="beranda">
-        <div class="slider">
-           <div class="list">
-                <div class="item active">
-                    <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/OnePiece.jpg?raw=true" alt="One Piece">
-                    <div class="content">
-                        <p>Anime Favorit</p>
-                        <h2>One Piece</h2>
-                        <p>Petualangan Luffy dan kru Topi Jerami dalam mencari harta karun legendaris. Saya sangat menyukai cerita persahabatan dan tekad mereka.</p>
-                    </div>
+<section id="beranda">
+    <div class="slider">
+        <div class="list">
+            <div class="item active">
+                <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/OnePiece.jpg?raw=true" alt="One Piece">
+                <div class="content">
+                    <p>Anime Favorit</p>
+                    <h2>One Piece</h2>
+                    <p>Petualangan Luffy dan kru Topi Jerami dalam mencari harta karun legendaris. Saya sangat menyukai cerita persahabatan dan tekad mereka.</p>
                 </div>
-                <div class="item">
-                   <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/OneDirection.jpg?raw=true" alt="One Direction">
-                   <div class="content">
-                      <p>Novelis Favorit</p>
-                      <h2>Tere Liye</h2>
-                      <p>
-                        Saya menyukai karya Tere Liye karena bahasanya sederhana namun menyentuh,
-                        ceritanya dekat dengan kehidupan, dan selalu mengandung pesan moral yang kuat.
-                      </p>
-                  </div>
-               </div>
             </div>
-            <div class="arrows">
-                <button id="prev"><i class="fas fa-chevron-left"></i></button>
-                <button id="next"><i class="fas fa-chevron-right"></i></button>
+            <div class="item">
+                <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/OneDirection.jpg?raw=true" alt="One Direction">
+                <div class="content">
+                    <p>Band Favorit</p>
+                    <h2>One Direction</h2>
+                    <p>Band boy asal Inggris yang sangat saya sukai sejak kecil. Lagu-lagu mereka selalu menemani hari-hari saya.</p>
+                </div>
             </div>
-            <div class="thumbnail">
-                <div class="item active">
-                    <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/OnePiece.jpg?raw=true" alt="One Piece Thumbnail">
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1627856013091-f7c59c6ed259?w=500&q=80" alt="Roblox">
+                <div class="content">
+                    <p>Game Favorit</p>
+                    <h2>Roblox</h2>
+                    <p>Platform game online yang menyenangkan dengan berbagai jenis permainan dan kreativitas tanpa batas.</p>
                 </div>
-                <div class="item">
-                    <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/OneDirection.jpg?raw=true" alt="One Direction Thumbnail">
-                </div>
-                <div class="item">
-                    <img src="c:\Users\User\Downloads\thumb-1920-1217518.jpg" alt="Roblox Thumbnail">
-                </div>
-                <div class="item">
-                    <img src="c:\Users\User\Downloads\windah.jpg" alt="Windah Basudara Thumbnail">
-                </div>
-                <div class="item">
-                    <img src="c:\Users\User\Downloads\tere.jpeg" alt="Tere Liye Thumbnail">
-                </div>
-                <div class="item">
-                    <img src="c:\Users\User\Downloads\R1363_MrBeast_1feature.webp" alt="James Stephen Thumbnail">
-                </div>
-                <div class="item">
-                    <img src="c:\Users\User\Downloads\01hcy84hbxzb4b2sbv4y5gec2z.webp" alt="Hansen Vendi Agus Thumbnail">
+            </div>
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1593115057322-e94b77572f20?w=500&q=80" alt="Content Creator">
+                <div class="content">
+                    <p>Content Creator</p>
+                    <h2>Windah Basudara</h2>
+                    <p>Content creator Indonesia yang inspiratif dengan konten gaming yang menghibur dan edukatif.</p>
                 </div>
             </div>
         </div>
+        
+        <div class="arrows">
+            <button id="prev"><i class="fas fa-chevron-left"></i></button>
+            <button id="next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        
+        <div class="thumbnail">
+            <div class="item active">
+                <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/OnePiece.jpg?raw=true" alt="One Piece Thumbnail">
+            </div>
+            <div class="item">
+                <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/OneDirection.jpg?raw=true" alt="One Direction Thumbnail">
+            </div>
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1627856013091-f7c59c6ed259?w=500&q=80" alt="Roblox Thumbnail">
+            </div>
+            <div class="item">
+                <img src="https://images.unsplash.com/photo-1593115057322-e94b77572f20?w=500&q=80" alt="Windah Basudara Thumbnail">
+            </div>
+        </div>
+    </div>
 
+    <!--Card section-->
         <section class="profile-section">
             <div class="profile-card">
                 <div class="circle">
@@ -1948,84 +1955,93 @@
         }
 
         // Fungsi untuk inisialisasi slider
-        function initSlider() {
-            const slider = document.querySelector('.slider');
-            const items = document.querySelectorAll('.slider .list .item');
-            const next = document.getElementById('next');
-            const prev = document.getElementById('prev');
-            const thumbnails = document.querySelectorAll('.thumbnail .item');
-            
-            // Validasi elemen
-            if (!items.length || !next || !prev || !thumbnails.length) {
-                console.error('Elemen slider tidak ditemukan!');
-                return;
-            }
+function initSlider() {
+    const slider = document.querySelector('.slider');
+    const items = document.querySelectorAll('.slider .list .item');
+    const next = document.getElementById('next');
+    const prev = document.getElementById('prev');
+    const thumbnails = document.querySelectorAll('.thumbnail .item');
+    
+    // Validasi elemen
+    if (!items.length || !next || !prev || !thumbnails.length) {
+        console.error('Elemen slider tidak ditemukan!');
+        return;
+    }
 
-            let countItem = items.length;
-            let itemActive = 0;
-            let refreshInterval;
+    // Pastikan jumlah item dan thumbnail sama
+    if (items.length !== thumbnails.length) {
+        console.error('Jumlah item slider dan thumbnail tidak sama!');
+        return;
+    }
 
-            function showSlider() {
-                // Remove active class from old items
-                const itemActiveOld = document.querySelector('.slider .list .item.active');
-                const thumbnailActiveOld = document.querySelector('.thumbnail .item.active');
-                
-                if (itemActiveOld) itemActiveOld.classList.remove('active');
-                if (thumbnailActiveOld) thumbnailActiveOld.classList.remove('active');
+    let countItem = items.length;
+    let itemActive = 0;
+    let refreshInterval;
 
-                // Add active class to new items
-                items[itemActive].classList.add('active');
-                thumbnails[itemActive].classList.add('active');
+    function showSlider() {
+        console.log('Showing slide:', itemActive); // Debug
+        
+        // Remove active class from old items
+        const itemActiveOld = document.querySelector('.slider .list .item.active');
+        const thumbnailActiveOld = document.querySelector('.thumbnail .item.active');
+        
+        if (itemActiveOld) itemActiveOld.classList.remove('active');
+        if (thumbnailActiveOld) thumbnailActiveOld.classList.remove('active');
 
-                // Clear and reset auto slide
-                clearInterval(refreshInterval);
-                refreshInterval = setInterval(() => {
-                    next.click();
-                }, 5000);
-            }
+        // Add active class to new items
+        items[itemActive].classList.add('active');
+        thumbnails[itemActive].classList.add('active');
 
-            // Next button event
-            next.addEventListener('click', () => {
-                itemActive = (itemActive + 1) % countItem;
-                showSlider();
-            });
+        // Clear and reset auto slide
+        clearInterval(refreshInterval);
+        refreshInterval = setInterval(() => {
+            next.click();
+        }, 5000);
+    }
 
-            // Prev button event
-            prev.addEventListener('click', () => {
-                itemActive = (itemActive - 1 + countItem) % countItem;
-                showSlider();
-            });
+    // Next button event
+    next.addEventListener('click', () => {
+        itemActive = (itemActive + 1) % countItem;
+        showSlider();
+    });
 
-            // Thumbnail click event
-            thumbnails.forEach((thumb, index) => {
-                thumb.addEventListener('click', () => {
-                    itemActive = index;
-                    showSlider();
-                });
-            });
+    // Prev button event
+    prev.addEventListener('click', () => {
+        itemActive = (itemActive - 1 + countItem) % countItem;
+        showSlider();
+    });
 
-            // Auto play
-            refreshInterval = setInterval(() => {
-                next.click();
-            }, 5000);
-
-            // Pause on hover
-            slider.addEventListener('mouseenter', () => {
-                clearInterval(refreshInterval);
-            });
-
-            slider.addEventListener('mouseleave', () => {
-                refreshInterval = setInterval(() => {
-                    next.click();
-                }, 5000);
-            });
-
-            // Initialize
+    // Thumbnail click event
+    thumbnails.forEach((thumb, index) => {
+        thumb.addEventListener('click', () => {
+            itemActive = index;
             showSlider();
-        }
+        });
+    });
+
+    // Auto play
+    refreshInterval = setInterval(() => {
+        next.click();
+    }, 5000);
+
+    // Pause on hover
+    slider.addEventListener('mouseenter', () => {
+        clearInterval(refreshInterval);
+    });
+
+    slider.addEventListener('mouseleave', () => {
+        refreshInterval = setInterval(() => {
+            next.click();
+        }, 5000);
+    });
+
+    // Initialize
+    showSlider();
+}
     </script>
 </body>
 </html>
+
 
 
 
