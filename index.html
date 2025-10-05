@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brodanz Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
     <style>
         /* Variabel CSS yang diperbarui */
@@ -1500,7 +1501,7 @@
                 <p>Seorang pemuda yang bercita-cita menjadi programmer handal sekaligus content creator inspiratif</p>
                 <a href="#galeri" class="btn">Tentang Saya</a>
             </div>
-            <img src="https://raw.githubusercontent.com/Brodanz-pc/Akhdan/a0f7adf4ddfdb0377118aafd2508dd3456e28a73/bro.png" alt="Profile Picture" class="profile-img">
+            <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/bro.png?raw=true" alt="Profile Picture" class="profile-img">
         </div>
     </section>
 
@@ -1681,7 +1682,7 @@
     </footer>
 
     <script>
-        // Data galeri foto
+        // Data galeri foto - YANG SUDAH DIPERBAIKI
         const galleryData = [
             {
                 src: "https://github.com/Brodanz-pc/Akhdan/blob/main/cool1.jpg?raw=true",
@@ -1713,31 +1714,6 @@
                 category: "cool",
                 caption: "Danz The Explorer part 2"
             }
-            {
-                src: "https://github.com/Brodanz-pc/Akhdan/blob/main/cool5.jpg?raw=true",
-                category: "cool",
-                caption: "Danz The Explorer"
-            },
-            {
-                src: "https://github.com/Brodanz-pc/Akhdan/blob/main/cool5.jpg?raw=true",
-                category: "cool",
-                caption: "Danz The Explorer"
-            },
-            {
-                src: "https://github.com/Brodanz-pc/Akhdan/blob/main/cool5.jpg?raw=true",
-                category: "cool",
-                caption: "Danz The Explorer"
-            },
-            {
-                src: "https://github.com/Brodanz-pc/Akhdan/blob/main/cool5.jpg?raw=true",
-                category: "cool",
-                caption: "Danz The Explorer"
-            },
-            {
-                src: "https://github.com/Brodanz-pc/Akhdan/blob/main/cool5.jpg?raw=true",
-                category: "cool",
-                caption: "Danz The Explorer"
-            },
         ];
 
         // Data quotes dan puisi
@@ -1785,6 +1761,7 @@
 
         // Inisialisasi saat DOM siap
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded - initializing functions');
             initSlider();
             initGallery();
             initContentTabs();
@@ -1794,6 +1771,7 @@
 
         // SLIDER FUNCTION - FIXED
         function initSlider() {
+            console.log('Initializing slider...');
             const items = document.querySelectorAll('.slider .list .item');
             const thumbnails = document.querySelectorAll('.thumbnail .item');
             const next = document.getElementById('next');
@@ -1808,6 +1786,7 @@
             let autoSlideInterval;
             
             function showSlide(index) {
+                console.log('Showing slide:', index);
                 // Reset semua item
                 items.forEach(item => item.classList.remove('active'));
                 thumbnails.forEach(thumb => thumb.classList.remove('active'));
@@ -1830,8 +1809,8 @@
             }
             
             // Event listeners
-            next.addEventListener('click', nextSlide);
-            prev.addEventListener('click', prevSlide);
+            if (next) next.addEventListener('click', nextSlide);
+            if (prev) prev.addEventListener('click', prevSlide);
             
             thumbnails.forEach((thumb, index) => {
                 thumb.addEventListener('click', () => {
@@ -1851,8 +1830,10 @@
             startAutoSlide();
             
             const slider = document.querySelector('.slider');
-            slider.addEventListener('mouseenter', stopAutoSlide);
-            slider.addEventListener('mouseleave', startAutoSlide);
+            if (slider) {
+                slider.addEventListener('mouseenter', stopAutoSlide);
+                slider.addEventListener('mouseleave', startAutoSlide);
+            }
             
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
@@ -1865,6 +1846,7 @@
 
         // Fungsi untuk inisialisasi galeri foto
         function initGallery() {
+            console.log('Initializing gallery...');
             const gallery = document.querySelector('#galeri .gallery');
             const filterBtns = document.querySelectorAll('.filter-btn');
             const modal = document.querySelector('.modal');
@@ -1872,9 +1854,13 @@
             const captionText = document.querySelector('.caption');
             const closeBtn = document.querySelector('.close');
 
+            if (!gallery) {
+                console.log('Gallery element not found');
+                return;
+            }
+
             function loadGallery(filter = 'all') {
-                if (!gallery) return;
-                
+                console.log('Loading gallery with filter:', filter);
                 gallery.innerHTML = '';
                 
                 const filteredData = galleryData.filter(item => 
@@ -1882,7 +1868,7 @@
                 );
 
                 if (filteredData.length === 0) {
-                    gallery.innerHTML = '<p>Tidak ada foto yang ditemukan</p>';
+                    gallery.innerHTML = '<p style="text-align: center; grid-column: 1/-1; padding: 2rem;">Tidak ada foto yang ditemukan</p>';
                     return;
                 }
                 
@@ -1895,9 +1881,9 @@
                     gallery.appendChild(galleryItem);
 
                     galleryItem.addEventListener('click', function() {
-                        modal.style.display = "block";
-                        modalImg.src = item.src;
-                        captionText.innerHTML = item.caption;
+                        if (modal) modal.style.display = "block";
+                        if (modalImg) modalImg.src = item.src;
+                        if (captionText) captionText.innerHTML = item.caption;
                     });
                 });
             }
@@ -1911,26 +1897,35 @@
                 });
             });
 
-            closeBtn.addEventListener('click', function() {
-                modal.style.display = "none";
-            });
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    if (modal) modal.style.display = "none";
+                });
+            }
 
-            window.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            });
+            if (modal) {
+                window.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.style.display = "none";
+                    }
+                });
+            }
 
             loadGallery();
         }
 
         // Fungsi untuk inisialisasi tab konten (quotes dan puisi)
         function initContentTabs() {
+            console.log('Initializing content tabs...');
+            
             function displayContent() {
                 const quotesGallery = document.getElementById('quotesGallery');
                 const poemsGallery = document.getElementById('poemsGallery');
                 
-                if (!quotesGallery || !poemsGallery) return;
+                if (!quotesGallery || !poemsGallery) {
+                    console.log('Content galleries not found');
+                    return;
+                }
                 
                 quotesGallery.innerHTML = '';
                 poemsGallery.innerHTML = '';
@@ -1999,11 +1994,15 @@
 
         // Fungsi untuk inisialisasi navbar
         function initNavbar() {
+            console.log('Initializing navbar...');
             const navbar = document.querySelector('.navbar');
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
 
-            if (!navbar || !hamburger || !navLinks) return;
+            if (!navbar || !hamburger || !navLinks) {
+                console.log('Navbar elements not found');
+                return;
+            }
 
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
@@ -2052,7 +2051,13 @@
 
         // Fungsi untuk animasi timeline vertikal
         function initTimelineAnimation() {
+            console.log('Initializing timeline animation...');
             const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            if (!timelineItems.length) {
+                console.log('Timeline items not found');
+                return;
+            }
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -2072,8 +2077,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
