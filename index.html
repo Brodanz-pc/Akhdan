@@ -41,6 +41,97 @@
             min-height: 100vh;
         }
 
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-color) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            text-align: center;
+        }
+
+        .loader-circle {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(76, 201, 240, 0.3);
+            border-top: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        .loader p {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Scroll Animation Styles */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
         /* Navbar Styles */
         .navbar {
             position: fixed;
@@ -1351,6 +1442,14 @@
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <p>Memuat Portfolio...</p>
+        </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo"><i class="fas fa-rocket"></i> Brodanz</div>
@@ -1440,11 +1539,11 @@
 
     <!-- IMPROVED Profile Section -->
     <section class="profile-section">
-        <div class="profile-card">
-            <div class="profile-image-container">
+        <div class="profile-card fade-in">
+            <div class="profile-image-container slide-in-left">
                 <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/bro.png?raw=true" alt="Profile Picture" class="profile-img">
             </div>
-            <div class="profile-content">
+            <div class="profile-content slide-in-right">
                 <h2>Akhdan Yudhistira Adita</h2>
                 <p>Seorang pemuda yang bercita-cita menjadi programmer handal sekaligus content creator inspiratif. Saya memiliki minat dalam pengembangan web, desain UI/UX, dan pembuatan konten kreatif.</p>
                 
@@ -1473,7 +1572,7 @@
 
     <!-- Experience Section dengan Timeline Vertikal -->
     <section class="experience-section">
-        <h2 class="section-title">Riwayat Pendidikan</h2>
+        <h2 class="section-title fade-in">Riwayat Pendidikan</h2>
         <div class="timeline-container">
             <div class="timeline">
                 <div class="timeline-item">
@@ -1571,13 +1670,13 @@
 
     <!-- Galeri Section -->
     <section id="galeri">
-        <header>
+        <header class="fade-in">
             <h1>Galeri Foto Saya</h1>
             <p>Koleksi momen berharga</p>
         </header>
 
         <div class="gallery-container">
-            <div class="gallery-filter">
+            <div class="gallery-filter fade-in">
                 <button class="filter-btn active" data-filter="all">Semua</button>
                 <button class="filter-btn" data-filter="cool">Keren</button>
                 <button class="filter-btn" data-filter="freak">Aneh</button>
@@ -1600,12 +1699,12 @@
     <!-- Karya Section -->
     <section id="karya">
         <div class="container">
-            <header>
+            <header class="fade-in">
                 <h1>Galeri Quotes dan Puisi</h1>
                 <p>Kumpulan kata-kata inspiratif dan karya sastra</p>
             </header>
             
-            <div class="tabs">
+            <div class="tabs fade-in">
                 <button class="tab-btn active" data-tab="quotes">Quotes</button>
                 <button class="tab-btn" data-tab="poems">Puisi</button>
             </div>
@@ -1627,22 +1726,22 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-logo">
+            <div class="footer-logo fade-in">
                 <i class="fas fa-rocket"></i> Danzya
             </div>
-            <div class="footer-links">
+            <div class="footer-links fade-in">
                 <a href="#beranda">Beranda</a>
                 <a href="#galeri">Galeri</a>
                 <a href="#karya">Karya</a>
                 <a href="https://open.spotify.com/playlist/1QwIS44rkUcpbv2MlSiAKQ?si=8Mo97BrATsmo65z60L09Kw">Playlist</a>
             </div>
-            <div class="footer-social">
+            <div class="footer-social fade-in">
                 <a href="http://www.youtube.com/@Akhdan_1209" target="_blank"><i class="fab fa-youtube"></i></a>
                 <a href="https://www.instagram.com/akhdandanz_/?next=%2F" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.tiktok.com/@dans_y.a" target="_blank"><i class="fab fa-tiktok"></i></a>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="footer-bottom fade-in">
             &copy; 2025 Danzya. All Rights Reserved.
         </div>
     </footer>
@@ -1822,12 +1921,55 @@
         // Inisialisasi saat DOM siap
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded - initializing functions');
+            initLoadingScreen();
             initSlider();
             initGallery();
             initContentTabs();
             initNavbar();
             initTimelineAnimation();
+            initScrollAnimations();
         });
+
+        // Loading Screen Function
+        function initLoadingScreen() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            
+            // Simulate loading time
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                
+                // Remove from DOM after animation completes
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 2000); // Adjust this time as needed
+        }
+
+        // Scroll Animations
+        function initScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // For staggered animations in gallery
+                        if (entry.target.classList.contains('gallery-item')) {
+                            const delay = Array.from(animatedElements).indexOf(entry.target) * 0.1;
+                            entry.target.style.transitionDelay = `${delay}s`;
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
 
         // SLIDER FUNCTION - FIXED
         function initSlider() {
@@ -1932,9 +2074,10 @@
                     return;
                 }
                 
-                filteredData.forEach(item => {
+                filteredData.forEach((item, index) => {
                     const galleryItem = document.createElement('div');
-                    galleryItem.className = `gallery-item ${item.category}`;
+                    galleryItem.className = `gallery-item ${item.category} fade-in`;
+                    galleryItem.style.transitionDelay = `${index * 0.1}s`;
                     galleryItem.innerHTML = `
                         <img src="${item.src}" alt="${item.caption}" class="gallery-img">
                     `;
@@ -1946,6 +2089,11 @@
                         if (captionText) captionText.innerHTML = item.caption;
                     });
                 });
+
+                // Trigger scroll animations after loading
+                setTimeout(() => {
+                    initScrollAnimations();
+                }, 100);
             }
 
             filterBtns.forEach(btn => {
@@ -1990,15 +2138,24 @@
                 quotesGallery.innerHTML = '';
                 poemsGallery.innerHTML = '';
                 
-                contentData.quotes.forEach(quote => {
+                contentData.quotes.forEach((quote, index) => {
                     const card = createCard(quote.content, quote.author, 'quote');
+                    card.classList.add('fade-in');
+                    card.style.transitionDelay = `${index * 0.1}s`;
                     quotesGallery.appendChild(card);
                 });
                 
-                contentData.poems.forEach(poem => {
+                contentData.poems.forEach((poem, index) => {
                     const card = createCard(poem.content, poem.author, 'poem', poem.title);
+                    card.classList.add('fade-in');
+                    card.style.transitionDelay = `${index * 0.1}s`;
                     poemsGallery.appendChild(card);
                 });
+
+                // Trigger scroll animations after loading
+                setTimeout(() => {
+                    initScrollAnimations();
+                }, 100);
             }
             
             function createCard(content, author, type, title = null) {
