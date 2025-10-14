@@ -41,7 +41,7 @@
             min-height: 100vh;
         }
 
-        /* Loading Screen Styles */
+        /* Loading Screen Styles - MODIFIED */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -63,16 +63,25 @@
 
         .loader {
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
-        .loader-circle {
-            width: 80px;
-            height: 80px;
-            border: 4px solid rgba(76, 201, 240, 0.3);
-            border-top: 4px solid var(--secondary-color);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            animation: spin 5s linear infinite;
+        .logo-container {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulse 2s infinite ease-in-out, rotate 5s infinite linear;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: drop-shadow(0 0 10px rgba(76, 201, 240, 0.7));
         }
 
         .loader p {
@@ -80,14 +89,26 @@
             color: var(--secondary-color);
             font-weight: 500;
             letter-spacing: 2px;
+            animation: textPulse 2s infinite alternate;
         }
 
-        @keyframes spin {
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        /* Scroll Animation Styles */
+        @keyframes textPulse {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* Sisa kode CSS lainnya tetap sama */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -1357,6 +1378,12 @@
             .experience-section {
                 padding: 60px 10px;
             }
+            
+            /* Responsive loading screen */
+            .logo-container {
+                width: 150px;
+                height: 150px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1438,14 +1465,27 @@
             .footer-links {
                 gap: 20px;
             }
+            
+            /* Responsive loading screen */
+            .logo-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .loader p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
+    <!-- Loading Screen - MODIFIED -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loader">
-            <div class="loader-circle"></div>
+            <div class="logo-container">
+                <!-- Ganti URL ini dengan logo Brodanz Anda -->
+                <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/Alogo.jpg?raw=true" alt="Brodanz Logo">
+            </div>
             <p>Memuat Portfolio...</p>
         </div>
     </div>
@@ -1930,7 +1970,7 @@
             initScrollAnimations();
         });
 
-        // Loading Screen Function
+        // Loading Screen Function - MODIFIED
         function initLoadingScreen() {
             const loadingScreen = document.getElementById('loadingScreen');
             
@@ -2294,4 +2334,3 @@
     </script>
 </body>
 </html>
-
