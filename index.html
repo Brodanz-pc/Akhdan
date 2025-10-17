@@ -41,7 +41,7 @@
             min-height: 100vh;
         }
 
-        /* Loading Screen Styles - MODIFIED */
+        /* Loading Screen Styles - UPDATED */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -66,16 +66,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 30px;
+            width: 90%;
+            max-width: 500px;
         }
 
         .logo-container {
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: pulse 2s infinite ease-in-out, rotate 5s infinite linear;
+            animation: pulse 2s infinite ease-in-out;
         }
 
         .logo-container img {
@@ -84,12 +86,69 @@
             filter: drop-shadow(0 0 10px rgba(76, 201, 240, 0.7));
         }
 
-        .loader p {
-            font-size: 1.2rem;
+        .loading-text {
+            font-size: 1.5rem;
             color: var(--secondary-color);
             font-weight: 500;
             letter-spacing: 2px;
-            animation: textPulse 2s infinite alternate;
+            margin-bottom: 10px;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(
+                -45deg,
+                rgba(255, 255, 255, 0.2) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.2) 75%,
+                transparent 75%,
+                transparent
+            );
+            background-size: 50px 50px;
+            animation: move 2s linear infinite;
+            border-radius: 10px;
+        }
+
+        .progress-text {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .percentage {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-color);
         }
 
         @keyframes pulse {
@@ -98,17 +157,16 @@
             100% { transform: scale(1); }
         }
 
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 50px 50px;
+            }
         }
 
-        @keyframes textPulse {
-            0% { opacity: 0.7; }
-            100% { opacity: 1; }
-        }
-
-        /* Sisa kode CSS lainnya tetap sama */
+        /* Scroll Animation Styles */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -1384,6 +1442,14 @@
                 width: 150px;
                 height: 150px;
             }
+            
+            .loading-text {
+                font-size: 1.3rem;
+            }
+            
+            .progress-text {
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1472,21 +1538,40 @@
                 height: 120px;
             }
             
-            .loader p {
-                font-size: 1rem;
+            .loading-text {
+                font-size: 1.1rem;
+            }
+            
+            .progress-text {
+                font-size: 0.9rem;
+            }
+            
+            .percentage {
+                font-size: 1.1rem;
+            }
+            
+            .progress-bar {
+                height: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen - MODIFIED -->
+    <!-- Loading Screen - UPDATED -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loader">
             <div class="logo-container">
                 <!-- Ganti URL ini dengan logo Brodanz Anda -->
                 <img src="https://github.com/Brodanz-pc/Akhdan/blob/main/Alogo.jpg?raw=true" alt="Brodanz Logo">
             </div>
-            <p>Memuat Portfolio...</p>
+            <div class="loading-text">Memuat Portfolio Brodanz...</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-text">
+                <span>Loading Progress:</span>
+                <span class="percentage" id="progressPercentage">0%</span>
+            </div>
         </div>
     </div>
 
@@ -1617,7 +1702,7 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <span class="timeline-date">2010</span>
+                        <span class="timeline-date">2011</span>
                         <i class="fa-solid fa-baby timeline-icon"></i>
                         <h3>Kelahiran</h3>
                         <h4>Akhdan Yudhistira Adita</h4>
@@ -1787,7 +1872,47 @@
     </footer>
 
     <script>
-        // Data galeri foto - YANG SUDAH DIPERBAIKI
+        // Loading Screen Function - UPDATED untuk progress bar 1-100%
+        function initLoadingScreen() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const progressBar = document.getElementById('progressBar');
+            const progressPercentage = document.getElementById('progressPercentage');
+            
+            let progress = 0;
+            const totalTime = 2500; // 2.5 detik total
+            const intervalTime = 25; // Update setiap 25ms
+            
+            // Simulate loading progress dari 1% hingga 100%
+            const progressInterval = setInterval(() => {
+                progress += 1;
+                
+                if (progress <= 100) {
+                    progressBar.style.width = `${progress}%`;
+                    progressPercentage.textContent = `${progress}%`;
+                    
+                    // Efek percepatan dan perlambatan untuk lebih natural
+                    if (progress < 20) {
+                        // Lebih cepat di awal
+                    } else if (progress > 80) {
+                        // Lebih lambat di akhir
+                    }
+                } else {
+                    clearInterval(progressInterval);
+                    
+                    // Tunggu sebentar sebelum menyembunyikan loading screen
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        
+                        // Remove dari DOM setelah animasi selesai
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
+                    }, 300);
+                }
+            }, totalTime / 100);
+        }
+
+        // Data galeri foto
         const galleryData = [
             {
                 src: "https://github.com/Brodanz-pc/Akhdan/blob/main/cool1.jpg?raw=true",
@@ -1969,21 +2094,6 @@
             initTimelineAnimation();
             initScrollAnimations();
         });
-
-        // Loading Screen Function - MODIFIED
-        function initLoadingScreen() {
-            const loadingScreen = document.getElementById('loadingScreen');
-            
-            // Simulate loading time
-            setTimeout(() => {
-                loadingScreen.classList.add('hidden');
-                
-                // Remove from DOM after animation completes
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }, 2000); // Adjust this time as needed
-        }
 
         // Scroll Animations
         function initScrollAnimations() {
@@ -2334,4 +2444,3 @@
     </script>
 </body>
 </html>
-
