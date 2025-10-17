@@ -659,6 +659,43 @@
             margin-top: 10px;
         }
 
+        /* Load More Button Styles */
+        .load-more-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            padding: 20px 0;
+        }
+
+        .load-more-btn {
+            background: var(--secondary-color);
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(76, 201, 240, 0.4);
+        }
+
+        .load-more-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(247, 37, 133, 0.4);
+        }
+
+        .load-more-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
         /* Main Content Styles */
         .container {
             max-width: 1200px;
@@ -1811,6 +1848,13 @@
             <div class="gallery">
                 <!-- Foto akan dimuat di sini oleh JavaScript -->
             </div>
+
+            <!-- Tombol Muat Lebih Banyak -->
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <i class="fas fa-plus-circle"></i> Muat Lebih Banyak
+                </button>
+            </div>
         </div>
 
         <!-- Modal untuk tampilan foto besar -->
@@ -2083,6 +2127,10 @@
             ]
         };
 
+        // Variabel global untuk mengelola galeri foto
+        let currentDisplayCount = 0;
+        let currentFilter = 'all';
+
         // Inisialisasi saat DOM siap
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded - initializing functions');
@@ -2205,15 +2253,20 @@
             const modalImg = document.getElementById('modal-img');
             const captionText = document.querySelector('.caption');
             const closeBtn = document.querySelector('.close');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
 
             if (!gallery) {
                 console.log('Gallery element not found');
                 return;
             }
 
-            function loadGallery(filter = 'all') {
+            // Fungsi untuk memuat galeri dengan filter dan jumlah tertentu
+            function loadGallery(filter = 'all', resetCount = true) {
                 console.log('Loading gallery with filter:', filter);
-                gallery.innerHTML = '';
+                
+                if (resetCount) {
+                    currentDisplayCount = 0;
+                }
                 
                 const filteredData = galleryData.filter(item => 
                     filter === 'all' || item.category === filter
@@ -2224,10 +2277,19 @@
                     return;
                 }
                 
-                filteredData.forEach((item, index) => {
+                // Reset galeri jika resetCount true
+                if (resetCount) {
+                    gallery.innerHTML = '';
+                }
+                
+                // Tampilkan foto-foto yang sesuai dengan filter dan jumlah yang ditentukan
+                const itemsToShow = Math.min(currentDisplayCount + 8, filteredData.length);
+                
+                for (let i = currentDisplayCount; i < itemsToShow; i++) {
+                    const item = filteredData[i];
                     const galleryItem = document.createElement('div');
                     galleryItem.className = `gallery-item ${item.category} fade-in`;
-                    galleryItem.style.transitionDelay = `${index * 0.1}s`;
+                    galleryItem.style.transitionDelay = `${i * 0.1}s`;
                     galleryItem.innerHTML = `
                         <img src="${item.src}" alt="${item.caption}" class="gallery-img">
                     `;
@@ -2238,7 +2300,20 @@
                         if (modalImg) modalImg.src = item.src;
                         if (captionText) captionText.innerHTML = item.caption;
                     });
-                });
+                }
+                
+                currentDisplayCount = itemsToShow;
+                
+                // Update tombol Muat Lebih Banyak
+                if (loadMoreBtn) {
+                    if (currentDisplayCount >= filteredData.length) {
+                        loadMoreBtn.disabled = true;
+                        loadMoreBtn.innerHTML = '<i class="fas fa-check"></i> Semua Foto Telah Dimuat';
+                    } else {
+                        loadMoreBtn.disabled = false;
+                        loadMoreBtn.innerHTML = '<i class="fas fa-plus-circle"></i> Muat Lebih Banyak';
+                    }
+                }
 
                 // Trigger scroll animations after loading
                 setTimeout(() => {
@@ -2246,14 +2321,22 @@
                 }, 100);
             }
 
+            // Event listener untuk tombol filter
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
                     filterBtns.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
-                    const filter = this.dataset.filter;
-                    loadGallery(filter);
+                    currentFilter = this.dataset.filter;
+                    loadGallery(currentFilter, true);
                 });
             });
+
+            // Event listener untuk tombol Muat Lebih Banyak
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    loadGallery(currentFilter, false);
+                });
+            }
 
             if (closeBtn) {
                 closeBtn.addEventListener('click', function() {
@@ -2269,6 +2352,7 @@
                 });
             }
 
+            // Load galeri pertama kali
             loadGallery();
         }
 
@@ -2444,5 +2528,3 @@
     </script>
 </body>
 </html>
-
-
