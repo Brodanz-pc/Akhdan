@@ -175,6 +175,8 @@
             overflow: hidden;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: block;
         }
 
         body.light-mode .blog-card {
@@ -221,6 +223,14 @@
         .blog-date {
             font-size: 0.9rem;
             color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .external-link-icon {
+            font-size: 0.8rem;
+            margin-left: 5px;
         }
 
         /* Reset dan Base Styles */
@@ -2223,41 +2233,86 @@
         </div>
     </section>
 
-    <!-- Blog Section - DIPINDAH KE BAWAH -->
+    <!-- Blog Section dengan Link ke Website Eksternal -->
     <section id="blog" class="blog-section">
         <div class="container">
             <header class="fade-in">
                 <h1>Blog & Artikel</h1>
-                <p>Sharing pengetahuan dan pengalaman tentang programming dan teknologi</p>
+                <p>Kumpulan artikel menarik dari berbagai website programming dan teknologi</p>
             </header>
             
             <div class="blog-grid">
-                <div class="blog-card fade-in">
-                    <img src="https://ptqiqro.id/jam-karet" alt="Web Development" class="blog-image">
+                <!-- Artikel 1: W3Schools -->
+                <a href="https://www.w3schools.com/html/default.asp" target="_blank" class="blog-card fade-in">
+                    <img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" alt="HTML Tutorial" class="blog-image">
                     <div class="blog-content">
-                        <h3 class="blog-title">Jam Karet</h3>
-                        <p class="blog-excerpt">Kalian pernah nggak sih, janjian sama teman jam 8 pagi, tapi baru ketemu dia jam 10, dan itu pun masih dibalut dengan alasan, “Maaf ya, tadi macet di jalan,” atau, “Sorry ya, tadi aku ketiduran.”</p>
-                        <div class="blog-date">12 November 2025</div>
+                        <h3 class="blog-title">HTML Tutorial untuk Pemula</h3>
+                        <p class="blog-excerpt">Pelajari dasar-dasar HTML dari nol hingga mahir dengan tutorial interaktif dari W3Schools.</p>
+                        <div class="blog-date">
+                            <i class="fas fa-external-link-alt external-link-icon"></i> W3Schools.com
+                        </div>
                     </div>
-                </div>
+                </a>
                 
-                <div class="blog-card fade-in">
-                    <img src="https://ptqiqro.id/poker-face" alt="JavaScript" class="blog-image">
+                <!-- Artikel 2: FreeCodeCamp -->
+                <a href="https://www.freecodecamp.org/news/tag/javascript/" target="_blank" class="blog-card fade-in">
+                    <img src="https://cdn.freecodecamp.org/platform/universal/fcc_meta_1920X1080-indigo.png" alt="JavaScript Articles" class="blog-image">
                     <div class="blog-content">
-                        <h3 class="blog-title">Poker Face</h3>
-                        <p class="blog-excerpt">Istilah Poker Face pertama kali muncul pada permainan kartu poker, dimana para pemain harus tetap menjaga ekspresi wajah agar tetap terlihat netral. Dengan begitu, lawan tidak bisa menebak kartu yang kita pegang.</p>
-                        <div class="blog-date">29 November 2025</div>
+                        <h3 class="blog-title">Tips & Trick JavaScript Modern</h3>
+                        <p class="blog-excerpt">Kumpulan artikel terbaru tentang JavaScript modern, framework, dan best practices.</p>
+                        <div class="blog-date">
+                            <i class="fas fa-external-link-alt external-link-icon"></i> FreeCodeCamp.org
+                        </div>
                     </div>
-                </div>
+                </a>
                 
-                <div class="blog-card fade-in">
-                    <img src="https://via.placeholder.com/400x200/2d4263/ffffff?text=Content+Creation" alt="Content Creation" class="blog-image">
+                <!-- Artikel 3: MDN Web Docs -->
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="blog-card fade-in">
+                    <img src="https://developer.mozilla.org/mdn-social-share.cd6c4a5a.png" alt="CSS Documentation" class="blog-image">
                     <div class="blog-content">
-                        <h3 class="blog-title">Content Creation untuk Programmer</h3>
-                        <p class="blog-excerpt">Bagaimana membuat konten programming yang menarik dan bermanfaat untuk audience.</p>
-                        <div class="blog-date">5 Januari 2024</div>
+                        <h3 class="blog-title">CSS Complete Reference Guide</h3>
+                        <p class="blog-excerpt">Dokumentasi lengkap CSS dari Mozilla Developer Network untuk semua level developer.</p>
+                        <div class="blog-date">
+                            <i class="fas fa-external-link-alt external-link-icon"></i> MDN Web Docs
+                        </div>
                     </div>
-                </div>
+                </a>
+
+                <!-- Artikel 4: Codecademy Blog -->
+                <a href="https://www.codecademy.com/resources/blog/" target="_blank" class="blog-card fade-in">
+                    <img src="https://images.codecademy.com/social/logo-codecademy-social.png" alt="Codecademy Blog" class="blog-image">
+                    <div class="blog-content">
+                        <h3 class="blog-title">Belajar Programming Step by Step</h3>
+                        <p class="blog-excerpt">Panduan lengkap untuk memulai karir di dunia programming dari dasar hingga advanced.</p>
+                        <div class="blog-date">
+                            <i class="fas fa-external-link-alt external-link-icon"></i> Codecademy Blog
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Artikel 5: Dev.to -->
+                <a href="https://dev.to/" target="_blank" class="blog-card fade-in">
+                    <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png" alt="DEV Community" class="blog-image">
+                    <div class="blog-content">
+                        <h3 class="blog-title">Komunitas Developer Terbuka</h3>
+                        <p class="blog-excerpt">Platform berbagi pengetahuan dan pengalaman dari developer seluruh dunia.</p>
+                        <div class="blog-date">
+                            <i class="fas fa-external-link-alt external-link-icon"></i> DEV Community
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Artikel 6: CSS-Tricks -->
+                <a href="https://css-tricks.com/" target="_blank" class="blog-card fade-in">
+                    <img src="https://css-tricks.com/wp-content/uploads/2019/06/logo-css-tricks-2.png" alt="CSS Tricks" class="blog-image">
+                    <div class="blog-content">
+                        <h3 class="blog-title">Trik & Tips CSS Terbaru</h3>
+                        <p class="blog-excerpt">Kumpulan tutorial, tips, dan trik CSS untuk membuat website yang menarik dan responsif.</p>
+                        <div class="blog-date">
+                            <i class="fas fa-external-link-alt external-link-icon"></i> CSS-Tricks.com
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -3020,4 +3075,3 @@
     </script>
 </body>
 </html>
-
